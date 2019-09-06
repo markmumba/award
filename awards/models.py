@@ -14,7 +14,7 @@ class Profile(models.Model):
 
 
 class Project(models.Model):
-    title = models.CharField(max_length=60)
+    links = models.CharField(max_length=60)
     post = HTMLField()
     editor = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
@@ -25,3 +25,8 @@ class Project(models.Model):
     def search_by_title(cls, search_term):
         projects = cls.objects.filter(title__icontains=search_term)
         return news
+
+    @classmethod
+    def print_all(cls):
+        project = Project.objects.all()
+        return project

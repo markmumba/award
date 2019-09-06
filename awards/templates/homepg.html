@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block content %}
+{{ block.super}}
+<style>
+  <style>#grad1 {
+    height: 700px;
+    /* For browsers that do not support gradients */
+    background-image:
+      linear-gradient(to right, rgb(0, 0, 0) 40%, rgba(255, 255, 255, 0)),
+      url('image/4k-wallpaper-automotive-blur-1413412.jpg');
+    /* Standard syntax (must be last) */
+    background-size: cover;
+  }
+
+  img {
+    width: 900px;
+    height: 700px;
+    padding: 30px;
+  }
+</style>
+
+
+<div id="grad1">
+  <div class="info "
+    style="color: rgb(233, 233, 233);padding-top: 250px;padding-left: 90px;font-family: 'Anton', sans-serif;font-size: 60px;">
+    <div class="animated fadeInUp delay-1s">WELCOME TO THE<br></div>
+    <div class="animated fadeInUp delay-2s">AWARD SHOW<br></div>
+  </div>
+  <div class="animated fadeInUp delay-3s"
+    style="font-size:20px; color:blanchedalmond;padding-left: 150px; font-family: 'Playfair Display', serif;">
+    by Markian Mumba</div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+  <!-- Looping through news   -->
+  {% for awards_item in projects %}
+
+  <!--Display news Article images  -->
+  <div class="col-4">
+    <h2 class="text-center"><a href="{{ awards_item.links}}">Project Links </a></h2>
+    <img class="img-responsive rounded" src="{{awards_item.project_image.url}}" alt="Image">
+  </div>
+
+</div>
+
+
+{% empty %}
+<div class="row">
+  <h2 class="text-center">There No News Items</h2>
+</div>
+
+{% endfor %}
+
+
+
+{% endblock %}
