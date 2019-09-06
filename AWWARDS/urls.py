@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.contrib.auth import views 
+import awards.urls
+
 
 urlpatterns = [
+    
     url(r'^admin/', admin.site.urls),
+    url('', include (awards.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^logout/$',views.logout,{"next_page":'/'}),
+  
 ]
