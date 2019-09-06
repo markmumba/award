@@ -8,6 +8,13 @@ class Profile(models.Model):
     user = models.ForeignKey(User ,null=True)
 
 
+
+
 class Project(models.Model):
     photo = models.ImageField(upload_to= 'images/' , null = True)
     link = models.TextField()
+    description =models.TextField(max_length=100 , null=True)
+    rating = models.IntegerField(default = 0, null= True)
+
+
+    
