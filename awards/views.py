@@ -14,8 +14,8 @@ def profile(request):
 
 def project(request, project_id):
     try:
-        project = projects.objects.get(id=project_id)
+        project = Projects.objects.get(id=project_id)
     except DoesNotExist:
         raise Http404()
-    return render(request, "all-news/project.html", {"project": project})
+    return render(request, "project.html", {"project": project})
 

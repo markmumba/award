@@ -19,7 +19,7 @@ class Project(models.Model):
     editor = models.ForeignKey(User, on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
-    article_image = models.ImageField(
+    project_image = models.ImageField(
         upload_to='projects/', default='project_image')
 
     @classmethod
