@@ -11,3 +11,11 @@ def profile(request):
    
     return render(request,'profile.html',{'profile':profile})
 
+
+def project(request, project_id):
+    try:
+        project = projects.objects.get(id=project_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request, "all-news/project.html", {"project": project})
+
