@@ -1,22 +1,28 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container">
+{%extends 'base.html'%}
 
-    <div class="row">
-  
-   
-      {% for project in projects %}
-        <div class="col-sm-6 col-md-3">
-            <h1>{{project.title}}</h1>
-        </div>
-        <div class="md-12">
-          <p>{{project.post}}</p>
-        </div>
-        <div>
-          <img src="{{project.project_image.url}}" class="img-responsive" alt="picha">
-        </div>
-      {% endfor %}
+ {% block content %}
 
-    </div>
-  </div>
-  {% endblock %}
+ <div class="container">
+
+   <div class="row">
+     <img src="{{project.project_image.url}}"  class="img-responsive" alt="">
+   </div>
+
+   <div class="row">
+     <h1 class="text-center">{{project.title}}</h1>
+   </div>
+
+   <div class="row">
+    {% autoescape on %}
+    {{project.post| safe}}
+   {% endautoescape %}
+
+   </div>
+
+   <div class="row">
+     <p>Posted {{project.pub_date|timesince}} by {{project.editor.username}}</p>
+   </div>
+
+ </div>
+
+ {% endblock %}

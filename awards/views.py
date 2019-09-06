@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from django.contrib.auth.decorators import login_required
 
@@ -14,7 +16,7 @@ def profile(request):
 
 def project(request, project_id):
     try:
-        project = Projects.objects.get(id=project_id)
+        project = Project.objects.get(id=project_id)
     except DoesNotExist:
         raise Http404()
     return render(request, "project.html", {"project": project})
