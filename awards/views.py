@@ -25,6 +25,23 @@ def profile(request):
 
 
 @login_required(login_url='/accounts/login/')
+def create_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.username = current_user
+
+            profile.save()
+        return redirect('index')
+    else:
+        form = ProfileForm()
+
+    return render(request, 'new_profile.html', {"form": form})
+
+
+@login_required(login_url='/accounts/login/')
 def project(request, project_id):
     try:
         project = Project.objects.get(id=project_id)
@@ -112,9 +129,8 @@ class ProfileDes(APIView):
         else:
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
     def delete(self, request, pk, format=None):
-        prof= self.get_profile(pk)
+        prof = self.get_profile(pk)
         prof.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -141,7 +157,8 @@ class ProjectDes(APIView):
             return Response(serializers.data)
         else:
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-    def delete (self, request,pk, format=None):
-        proj=self.get_project(pk)
+
+    def delete(self, request, pk, format=None):
+        proj = self.get_project(pk)
         proj.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

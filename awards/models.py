@@ -6,9 +6,10 @@ from tinymce .models import HTMLField
 
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profile/', null=True)
-    user_bio = models.TextField()
+    bio = HTMLField(null=True)
     user = models.TextField(null=True)
     projects = models.ForeignKey('Project',on_delete=models.CASCADE,null=True)
+    email = models.EmailField(null=True)
 
 
     def __str__(self):
