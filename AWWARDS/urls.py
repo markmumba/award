@@ -20,7 +20,6 @@ import awards.urls
 
 
 urlpatterns = [
-
     url(r'^admin/', admin.site.urls),
     url('', include (awards.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')),
