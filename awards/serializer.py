@@ -3,10 +3,14 @@ from .models import *
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    model = Profile
-    fields = ('profile_photo',' user_bio','user,projects')
+    class Meta:
+
+        model = Profile
+        fields = ('id','profile_photo','user','projects')
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    model = Project
-    fields= ('title','links','description')
+    class Meta:
+
+        model = Project
+        fields= ('id','title','links','description')

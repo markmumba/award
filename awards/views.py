@@ -7,6 +7,7 @@ from .forms import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import *
+from .permission import IsAdminOrReadOnly
 
 
 # Create your views here.
@@ -59,7 +60,7 @@ def new_project(request):
 class ProfileList(APIView):
     def get(self, request, format=None):
         all_profiles = Profile.objects.all()
-        serializers = ProfileSerializer(all_profile, many=True)
+        serializers = ProfileSerializer(all_profiles, many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
@@ -68,6 +69,8 @@ class ProfileList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    permission_classes = (IsAdminOrReadOnly,)
 
 
 class Projectlist(APIView):
@@ -82,3 +85,63 @@ class Projectlist(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    permission_classes = (IsAdminOrReadOnly,)
+
+
+class ProfileDes(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+
+    def get_profile(self, pk):
+        try:
+            return Profile.objects.get(pk=pk)
+        except Profile.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        prof = self.get_profile(pk)
+        serializers = ProfileSerializer(prof)
+        return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        prof = self.get_profile(pk)
+        serializers = ProfileSerializer(prof, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self, request, pk, format=None):
+        prof= self.get_profile(pk)
+        prof.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ProjectDes(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+
+    def get_project(self, pk):
+        try:
+            return Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        proj = self.get_project(pk)
+        serializers = ProjectSerializer(proj)
+        return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        proj = self.get_project(pk)
+        serializers = ProjectSerializer(proj, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete (self, request,pk, format=None):
+        proj=self.get_project(pk)
+        proj.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
