@@ -7,7 +7,7 @@ from .forms import *
 
 
 # Create your views here.
-
+@login_required(login_url='/accounts/login/')
 def home(request):
     return render(request,'front.html')
 
