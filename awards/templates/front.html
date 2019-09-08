@@ -1,3 +1,22 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+</head>
 <style>
     * {
         box-sizing: border-box;
@@ -5,7 +24,7 @@
 
     body {
         margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Nunito', sans-serif;
         font-size: 1rem;
         font-weight: normal;
         line-height: 1.5;
@@ -49,8 +68,8 @@
         left: 0;
         width: 100vw;
         z-index: 1;
-       
-        opacity: 0.85;
+        background: #000000;;
+        opacity: 0.6;
     }
 
     .header-content {
@@ -96,14 +115,16 @@
 
     <div class="fullscreen-video-wrap">
         <video
-            src="https://storage.coverr.co/videos/Forrest%20Beach%20Ocean?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTY3OTU0NDU3fQ.sfIvsNyeo23H6Ch0J_mF9CYOBA87ZCL0NQZIRbGtgJM" autoplay="" loop="">
+            src="{%  static '/video/mp4_.mp4' %}"
+            autoplay="" loop="">
         </video>
     </div>
     <div class="header-overlay"></div>
     <div class="header-content text-md-center">
         <h1>Welcome Everyone</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id temporibus perferendis necessitatibus numquam
-            amet impedit explicabo? Debitis quasi ullam aperiam!</p>
-         <a class="btn" href="">Link</a>
+        <p>This where you can post your projects and rate other peoples
+            It easy to use and very inspiring to creators
+        </p>
+        <a class="btn btn-dark" href="{% url 'project_all' %}">Lets get Started</a>
     </div>
 </header>
