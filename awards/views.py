@@ -4,6 +4,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from django.contrib.auth.decorators import login_required
 from .forms import *
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import *
 
 
 # Create your views here.
@@ -52,3 +55,5 @@ def new_project(request):
     else:
         form = ProjectForm()
     return render(request, 'new_project.html', {"form": form})
+
+class 
