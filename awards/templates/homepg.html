@@ -2,21 +2,15 @@
 {% load bootstrap3 %}
 {% block content %}
 {{ block.super}}
+
 <style>
-  <style>#grad1 {
+  #grad1 {
     height: 700px;
     /* For browsers that do not support gradients */
     background-image:
-      linear-gradient(to right, rgb(0, 0, 0) 40%, rgba(255, 255, 255, 0)),
-      url('image/4k-wallpaper-automotive-blur-1413412.jpg');
+      linear-gradient(to right, rgb(0, 0, 0) 20%, rgba(255, 255, 255, 0)),
+      url('https://images.unsplash.com/photo-1542546068979-b6affb46ea8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
     /* Standard syntax (must be last) */
-    background-size: cover;
-  }
-
-  img {
-    width: 900px;
-    height: 700px;
-    padding: 30px;
   }
 </style>
 
@@ -38,19 +32,26 @@
 <br>
 <br>
 <br>
+
 <div class="container">
-
-  <!-- Looping through news   -->
-  {% for awards_item in projects %}
-
-  <!--Display news Article images  -->
-  <div class="col-4">
-    <h2 class="text-center"><a href="{{ awards_item.links}}">Project Links </a></h2>
-    <img class="img-responsive rounded" src="{{awards_item.project_image.url}}" alt="Image">
-  </div>
-
-</div>
-
+  <div class="row">
+    {% for awards_item in projects %}
+    <div class="col-md-4">
+        <div class="card" style="width: 350px; height: 200px; margin-top: 2%">
+            <img style="height: 300px" class="card-img-top" src="{{awards_item.project_image.url}}" alt="Post image">
+            <div class="card-body">
+                <h5 class="card-title">Project name: {{awards_item.title}}</h5>
+                <p class="card-text">Description: {{awards_item.description}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">date posted: {{awards_item.pub_date}}</li>
+                <li class="list-group-item">Votes: {{votes.average}} </li>
+            </ul>
+            <div class="card-body">
+                <a href="{{ awards_item.links}}" class="card-link">Project link</a>
+            </div>
+        </div>
+    </div>
 
 {% empty %}
 <div class="row">
@@ -62,3 +63,6 @@
 
 
 {% endblock %}
+
+
+

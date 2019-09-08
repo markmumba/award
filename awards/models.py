@@ -15,7 +15,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     links = models.CharField(max_length=60)
-    post = HTMLField()
+    description= HTMLField()
     editor = models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     project_image = models.ImageField(
