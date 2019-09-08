@@ -8,6 +8,9 @@ from .forms import *
 
 # Create your views here.
 
+def home(request):
+    return render(request,'front.html')
+
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
