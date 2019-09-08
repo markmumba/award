@@ -23,6 +23,7 @@ class Profile(models.Model):
 
 
 class Project(models.Model):
+    title = models.CharField(max_length=89, null= True)
     links = models.CharField(max_length=60)
     description = HTMLField()
     editor = models.ForeignKey(User, on_delete=models.CASCADE)

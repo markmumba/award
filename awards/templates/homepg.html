@@ -36,8 +36,8 @@
 <div class="container">
   <div class="row">
     {% for awards_item in projects %}
-    <div class="col-md-4">
-        <div class="card" style="width: 350px; height: 200px; margin-top: 2%">
+    <div class="col-md-">
+        <div class="card" style="width: 350px; height: 200px; margin-top: 2%;">
             <img style="height: 300px" class="card-img-top" src="{{awards_item.project_image.url}}" alt="Post image">
             <div class="card-body">
                 <h5 class="card-title">Project name: {{awards_item.title}}</h5>
