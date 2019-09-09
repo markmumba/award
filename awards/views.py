@@ -53,10 +53,18 @@ def project(request, project_id):
 
 @login_required(login_url='/accounts/login/')
 def project_all(request):
+    try:
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login/')
+        current_user = request.user
+        profile = Profile.objects.get(username=current_user)
+        projects = Project.print_all()
 
-    projects = Project.print_all()
+        print(current_user)
+    except ObjectDoesNotExist:
+        return redirect('new-profile')
 
-    return render(request, 'homepg.html', {"projects": projects})
+    return render(request, 'homepg.html', {"profile": profile, "projects": projects})
 
 
 @login_required(login_url='/accounts/login/')
