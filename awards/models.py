@@ -8,6 +8,7 @@ class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profile/', null=True)
     bio = HTMLField(null=True)
     user = models.TextField(null=True)
+    username = models.ForeignKey(User,on_delete=models.CASCADE,null = True)
     projects = models.ForeignKey('Project',on_delete=models.CASCADE,null=True)
     email = models.EmailField(null=True)
 

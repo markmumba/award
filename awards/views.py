@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import *
 from .permission import IsAdminOrReadOnly
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -19,7 +20,7 @@ def home(request):
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
-    profile = Profile.objects.get(id=current_user.id)
+    profile = Profile.objects.get(username=current_user)
 
     return render(request, 'profile.html', {'profile': profile})
 
@@ -34,11 +35,11 @@ def create_profile(request):
             profile.username = current_user
 
             profile.save()
-        return redirect('index')
+        return redirect('project_all')
     else:
         form = ProfileForm()
 
-    return render(request, 'new_profile.html', {"form": form})
+    return render(request, 'new-profile.html', {"form": form})
 
 
 @login_required(login_url='/accounts/login/')

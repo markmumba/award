@@ -35,10 +35,10 @@
 <br>
 <br>
 
-<div class="container">
+ <div class="container">
   <div class="row">
     {% for awards_item in projects %}
-    <div class="col-md-">
+    <div class="col-md-4">
         <div class="card" style="width: 350px; height: 200px; margin-top: 2%;">
             <img style="height: 300px" class="card-img-top" src="{{awards_item.project_image.url}}" alt="Post image">
             <div class="card-body">
@@ -53,8 +53,8 @@
                 <a href="{{ awards_item.links}}" class="card-link">Project link</a>
             </div>
         </div>
-    </div>
-
+   
+</div>
 {% empty %}
 <div class="row">
   <h2 class="text-center">There No News Items</h2>
